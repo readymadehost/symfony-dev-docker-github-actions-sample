@@ -32,3 +32,10 @@ A symfony5 sample project using symfony dev docker
 - `bin/console --env=test doctrine:fixtures:load -q`
 - `bin/phpunit` to run tests
 
+
+## Running tests in github actions
+
+Symfony dev docker has database, extensions and everything needed to work with unit tests and function tests. Github actions are configured for sample project, check https://github.com/readymadehost/symfony-dev-docker-sample/blob/master/.github/workflows/tests.yml
+
+Create an issue if you have any questions.
+

@@ -1,0 +1,45 @@
+name: tests
+
+on:
+  # Run on every push event
+  push:
+    branches-ignore:
+      # Skip bot branches
+      - 'dependabot*'
+      # Skip development branch
+      - '*-dev'
+  # Run on every pull request
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker version
+        run: docker -v && docker-compose -v
+      - name: Clone symfony dev docker
+        uses: actions/checkout@v2
+        with:
+          repository: 'readymadehost/symfony-dev-docker'
+      - name: Checkout project code
+        uses: actions/checkout@v2
+        with:
+          path: 'project'
+      # For docker build cache
+      - name: Symfony dev docker build cache
+        uses: satackey/action-docker-layer-caching@v0.0.8
+        continue-on-error: true
+      # For projects .env.sample can be copied from project repo ie cp project/.env.docker.sample .env
+      - name: Build dev docker
+        run: cp .env.sample .env && docker-compose build cli && docker-compose up -d cli
+      - name: Installing project dependencies
+        run: docker-compose exec -T cli composer install --prefer-dist --no-progress --no-suggest
+      # If frontend dependencies exists for test to pass below might be needed
+      # - name: Installing and building frontend dependencies
+      #   run: docker-compose exec -T cli yarn install && docker-compose exec -T cli yarn build
+      - name: Preparing test database
+        run: docker-compose exec -T cli bin/console --env=test doctrine:database:create && docker-compose exec -T cli bin/console --env=test doctrine:migrations:migrate -q && docker-compose exec -T cli bin/console --env=test doctrine:fixtures:load -q
+      - name: Installing phpunit and check version
+        run: docker-compose exec -T cli bin/phpunit --version
+      - name: Running phpunit tests
+        run: docker-compose exec -T cli bin/phpunit

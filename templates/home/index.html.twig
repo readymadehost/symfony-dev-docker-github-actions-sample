@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Symfony dev docker sample
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+
+		.example-wrapper .greeting {
+			background: #F5F5F5;
+			padding: 6px 24px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Symfony dev docker sample</h1>
+		<div class="greeting">
+			{% if app.user %}
+				<h4>Hello
+					{{ app.user.username }}!</h4>
+			{% else %}
+				<h4>Hello guest!</h4>
+			{% endif %}
+		</div>
+		<div>
+			{% if app.user %}
+				<a href="{{ path('app_logout') }}">Logout</a>
+			{% else %}
+				<a href="{{ url('app_login') }}">Login</a>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
+

@@ -7756,28 +7756,29 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v5.1.7",
+            "version": "v5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "4b02edb4c4c2d57b94e62904e45f3484b29d36eb"
+                "reference": "4b28c24db64156ad892300be7fae1978bed075ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/4b02edb4c4c2d57b94e62904e45f3484b29d36eb",
-                "reference": "4b02edb4c4c2d57b94e62904e45f3484b29d36eb",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/4b28c24db64156ad892300be7fae1978bed075ce",
+                "reference": "4b28c24db64156ad892300be7fae1978bed075ce",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
                 "symfony/config": "^4.4|^5.0",
                 "symfony/framework-bundle": "^5.1",
-                "symfony/http-kernel": "^4.4|^5.0",
+                "symfony/http-kernel": "^5.2",
                 "symfony/routing": "^4.4|^5.0",
                 "symfony/twig-bundle": "^4.4|^5.0",
-                "twig/twig": "^2.10|^3.0"
+                "twig/twig": "^2.13|^3.0.4"
             },
             "conflict": {
+                "symfony/dependency-injection": "<5.2",
                 "symfony/form": "<4.4",
                 "symfony/messenger": "<4.4"
             },
@@ -7788,11 +7789,6 @@
                 "symfony/stopwatch": "^4.4|^5.0"
             },
             "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Bundle\\WebProfilerBundle\\": ""
@@ -7815,7 +7811,7 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony WebProfilerBundle",
+            "description": "Provides a development tool that gives detailed information about the execution of any request",
             "homepage": "https://symfony.com",
             "funding": [
                 {
@@ -7831,7 +7827,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-07T05:10:28+00:00"
+            "time": "2021-01-28T22:06:19+00:00"
         },
         {
             "name": "webimpress/safe-writer",

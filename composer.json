@@ -27,7 +27,7 @@
         "symfony/notifier": "5.4.*",
         "symfony/process": "5.3.*",
         "symfony/property-access": "5.3.*",
-        "symfony/property-info": "5.3.*",
+        "symfony/property-info": "5.4.*",
         "symfony/security-bundle": "5.4.*",
         "symfony/serializer": "5.3.*",
         "symfony/string": "5.3.*",

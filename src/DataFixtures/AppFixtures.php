@@ -22,7 +22,8 @@ class AppFixtures extends Fixture
     {
         $this->userPasswordEncoder = $userPasswordEncoder;
     }
-    public function load(ObjectManager $manager)
+
+    public function load(ObjectManager $manager): void
     {
         /* Persisting test user */
         $testUser = new User();

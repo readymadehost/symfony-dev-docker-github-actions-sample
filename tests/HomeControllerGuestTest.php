@@ -14,7 +14,7 @@ class HomeControllerGuestTest extends WebTestCase
     {
         $client = self::createClient();
         /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router $router */
-        $router = self::$container->get('router');
+        $router = $this->getContainer()->get('router');
 
         $client->request('GET', $router->generate('app_home'));
 

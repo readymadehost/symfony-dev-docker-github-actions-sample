@@ -15,9 +15,9 @@ class HomeControllerLoggedinTest extends WebTestCase
     {
         $client = self::createClient();
         /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router $router */
-        $router = self::$container->get('router');
+        $router = $this->getContainer()->get('router');
         /** @var UserRepository $userRepository */
-        $userRepository = self::$container->get(UserRepository::class);
+        $userRepository = $this->getContainer()->get(UserRepository::class);
 
         $loggedinEmail = 'test@example.com';
         $testUser = $userRepository->findOneBy(['email' => $loggedinEmail]);

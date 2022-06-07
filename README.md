@@ -8,7 +8,7 @@ A symfony5 sample project using symfony dev docker
 - `git clone https://github.com/readymadehost/symfony-dev-docker.git symfony-sample-docker`
 - `cd symfony-sample-docker`
 - `git clone https://github.com/readymadehost/symfony-dev-docker-sample.git project`
-- `cp .env.sample .env` and review `.env` file
+- `cp project/symfony-dev-docker/.env .env` and review `.env` file
 - `docker-compose build`
 - `docker-compose up -d`
 - `docker-compose exec cli bash`
@@ -28,8 +28,8 @@ A symfony5 sample project using symfony dev docker
 
 - `bin/console --env=test doctrine:database:drop --force` to drop project_test database if exist
 - `bin/console --env=test doctrine:database:create` to create fresh test database
-- `bin/console --env=test doctrine:migrations:migrate -q`
-- `bin/console --env=test doctrine:fixtures:load -q`
+- `bin/console --env=test doctrine:migrations:migrate`
+- `bin/console --env=test doctrine:fixtures:load`
 - `bin/phpunit` to run tests
 
 

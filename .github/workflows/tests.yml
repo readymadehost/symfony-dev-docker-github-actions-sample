@@ -34,20 +34,18 @@ jobs:
       # For projects .env.sample can be copied from project repo ie cp project/.env.docker.sample .env
       - name: Build dev docker
         run: cp project/symfony-dev-docker/.env .env && docker-compose build cli && docker-compose up -d cli
+      - name: Manage project permission
+        run: docker-compose exec -T cli /root/manage-project-permission.sh
       - name: Installing project dependencies
         run: docker-compose exec -T cli composer install --prefer-dist --no-progress --no-suggest
       # If frontend dependencies exists for test to pass below might be needed
       # - name: Installing and building frontend dependencies
       #   run: docker-compose exec -T cli yarn install && docker-compose exec -T cli yarn build
-      - name: Drop test database
-        run: docker-compose exec -T cli bin/console --env=test doctrine:database:drop
-      - name: Create test database
-        run: docker-compose exec -T cli bin/console --env=test doctrine:database:create
-      - name: Migrate test database
-        run: docker-compose exec -T cli bin/console --env=test doctrine:migrations:migrate -q 
-      - name: Seed test database
-        run: docker-compose exec -T cli bin/console --env=test doctrine:fixtures:load -q
+      - name: Preparing test database
+        run: docker-compose exec -T cli bin/console --env=test doctrine:database:create --no-interaction && docker-compose exec -T cli bin/console --env=test doctrine:migrations:migrate --no-interaction && docker-compose exec -T cli bin/console --env=test doctrine:fixtures:load --no-interaction
       - name: Installing phpunit and check version
         run: docker-compose exec -T cli bin/phpunit --version
       - name: Running phpunit tests
         run: docker-compose exec -T cli bin/phpunit
+      - name: Drop test database
+        run: docker-compose exec -T cli bin/console --env=test doctrine:database:drop --force --no-interaction

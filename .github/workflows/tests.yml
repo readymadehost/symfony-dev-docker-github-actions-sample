@@ -39,8 +39,14 @@ jobs:
       # If frontend dependencies exists for test to pass below might be needed
       # - name: Installing and building frontend dependencies
       #   run: docker-compose exec -T cli yarn install && docker-compose exec -T cli yarn build
-      - name: Preparing test database
-        run: docker-compose exec -T cli bin/console --env=test doctrine:database:create && docker-compose exec -T cli bin/console --env=test doctrine:migrations:migrate -q && docker-compose exec -T cli bin/console --env=test doctrine:fixtures:load -q
+      - name: Drop test database
+        run: docker-compose exec -T cli bin/console --env=test doctrine:database:drop
+      - name: Create test database
+        run: docker-compose exec -T cli bin/console --env=test doctrine:database:create
+      - name: Migrate test database
+        run: docker-compose exec -T cli bin/console --env=test doctrine:migrations:migrate -q 
+      - name: Seed test database
+        run: docker-compose exec -T cli bin/console --env=test doctrine:fixtures:load -q
       - name: Installing phpunit and check version
         run: docker-compose exec -T cli bin/phpunit --version
       - name: Running phpunit tests
